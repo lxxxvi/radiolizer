@@ -1,0 +1,18 @@
+<%= link_to "Back", "#", { onclick: 'history.go(-1); return false;', class: "btn btn-primary btn-lg" } %>
+
+<h1><%= @artist.name %></h1>
+
+<table>
+  <tr>
+      <th>Plays</th>
+      <th>Song</th>
+      <th>Last Played</th>
+  </tr>
+  <% @songs.each do |song| %>
+    <tr>
+      <td><%= song['play_count']%></td>
+      <td><%= link_to song['song_name'], song_path(id: song['song_id']) %></td>
+      <td><%= distance_of_time_in_words_to_now( song['last_played'] ) %> ago</td>
+    </tr>
+  <% end %>
+</table>

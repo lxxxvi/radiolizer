@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  time: 2015-12-04 10:43:53
+  name: Gimme Shelter by The Rolling Stones
+  station_id: 1
+  song_id: 2
+
+two:
+  id: 2
+  time: 2015-12-04 10:43:53
+  name: Give Me Shelter by The Rolling Stones
+  station_id: 1
+  song_id: 4

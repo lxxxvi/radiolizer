@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+stations = Station.create( [
+   { name: "Radio SRF 1",          endpoint: "http://www.srf.ch/radio-srf-1/programm/musik" } ,
+   { name: "Radio SRF 2 Kultur",   endpoint: "http://www.srf.ch/radio-srf-2-kultur/programm/musik" } ,
+   { name: "Radio SRF 3",          endpoint: "http://www.srf.ch/radio-srf-3/programm/musik" } ,
+   { name: "Radio SRF Musikwelle", endpoint: "http://www.srf.ch/radio-srf-musikwelle/programm/musik" } ,
+   { name: "Radio SRF Virus",      endpoint: "http://www.srf.ch/radio-srf-virus/programm/musik" }
+  ] )

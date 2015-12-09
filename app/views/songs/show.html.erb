@@ -1,0 +1,17 @@
+<%= link_to "Back", "#", { onclick: 'history.go(-1); return false;', class: "btn btn-primary btn-lg" } %>
+
+<h1><%= @song.name %> by <%= link_to @song.artist.name, @song.artist %></h1>
+
+<h2>Broadcast history</h2>
+<table>
+  <tr>
+      <th>Time</th>
+      <th>Station</th>
+  </tr>
+  <% @song.broadcasts.order('broadcasts.time DESC').each do |broadcast| %>
+      <tr>
+        <td><%= broadcast.time %></td>
+        <td><%= link_to broadcast.station.name, station_path(broadcast.station) %></td>
+      </tr>
+  <% end %>
+</table>

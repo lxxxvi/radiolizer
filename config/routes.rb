@@ -1,4 +1,11 @@
 Radiolizer::Application.routes.draw do
+
+  root 'stations#index'
+
+  resources "songs"
+  resources "artists"
+  resources "stations"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

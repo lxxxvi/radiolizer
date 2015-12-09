@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: The Rolling Stones
+  id: 1
+
+two:
+  name: Rolling Stones
+  id: 2
+  parent_id: 1
+
+three:
+  name: Rolling Stones, The
+  id: 3

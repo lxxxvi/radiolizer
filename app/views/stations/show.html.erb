@@ -1,0 +1,40 @@
+<%= link_to "All stations", stations_path, class: "btn btn-primary btn-lg" %>
+
+<h1><%= @station.name %></h1>
+
+<h2>Popular songs all time</h2>
+<table>
+    <tr>
+        <th>Plays</th>
+        <th>Song</th>
+        <th>Artist</th>
+        <th>Last played</th>
+    </tr>
+
+    <% @most_played_songs.each do |song| %>
+      <tr>
+        <td><%= song['play_count'] %></td>
+        <td><%= link_to song['song_name'], song_path(id: song['song_id']), class: 'song' %></td>
+        <td><%= link_to song['artist_name'], artist_path(id: song['artist_id']), class: 'artist' %></td>
+        <td><%= distance_of_time_in_words_to_now(song['last_played']) %> ago</td>
+      </tr>
+    <% end %>
+</table>
+
+<h2>Popular artists all time</h2>
+<table>
+    <tr>
+        <th>Plays</th>
+        <th>Artist</th>
+        <th>Last played</th>
+    </tr>
+
+    <% @most_played_artists.each do |artist| %>
+      <tr>
+          <td><%= artist['play_count'] %></td>
+          <td><%= link_to artist['artist_name'], artist_path(id: artist['artist_id']), class: 'artist' %></td>
+          <td><%= distance_of_time_in_words_to_now(artist['last_played']) %> ago</td>
+      </tr>
+    <% end %>
+</table>
+

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: Paint It Black
+  artist_id: 1
+
+two:
+  id: 2
+  name: Gimme Shelter
+  artist_id: 1
+
+three:
+  id: 3
+  name: (I can't get no) Satisfaction
+  artist_id: 3
+
+four:
+  id: 4
+  name: Give Me Shelter
+  artist_id: 1

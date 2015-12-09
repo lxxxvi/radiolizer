@@ -1,0 +1,13 @@
+<h1>Artists</h1>
+
+<table>
+  <tr>
+      <th>Name</th>
+  </tr>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= link_to artist.name, artist, class: 'artist' %></td>
+      </tr>
+    <% end %>
+</table>
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  station_id: 
+  time: 2015-12-09 07:47:32
+  type: 
+  found_broadcasts: 1
+
+two:
+  station_id: 
+  time: 2015-12-09 07:47:32
+  type: 
+  found_broadcasts: 1
