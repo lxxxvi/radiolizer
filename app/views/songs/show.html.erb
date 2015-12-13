@@ -1,5 +1,4 @@
-<%= link_to "Back", "#", { onclick: 'history.go(-1); return false;', class: "btn btn-primary btn-lg" } %>
-
+<%= button_tag "Back", { onclick: 'history.go(-1); return false;' } %><br />
 <h1><%= @song.name %> by <%= link_to @song.artist.name, @song.artist %></h1>
 
 <h2>Broadcast history</h2>

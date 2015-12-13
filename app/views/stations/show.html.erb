@@ -1,8 +1,6 @@
-<%= link_to "All stations", stations_path, class: "btn btn-primary btn-lg" %>
-
 <h1><%= @station.name %></h1>
 
-<h2>Popular songs all time</h2>
+<h2>Popular songs on <%= @station.name%></h2>
 <table>
     <tr>
         <th>Plays</th>
@@ -21,7 +19,9 @@
     <% end %>
 </table>
 
-<h2>Popular artists all time</h2>
+<hr />
+
+<h2>Popular artists on <%= @station.name %></h2>
 <table>
     <tr>
         <th>Plays</th>

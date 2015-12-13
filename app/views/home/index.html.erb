@@ -1,0 +1,29 @@
+<h1>Radiolizer</h1>
+
+<div class="global-stats">
+
+  <h2>Popular songs</h2>
+  <ul class="group">
+      <% @pop_songs.each do |song| %>
+        <li>
+          <div><%= song.play_count %> plays</div>
+          <div><%= link_to song.name, song_path(song) %></div>
+          <div>by <%= link_to song.artist.name, artist_path(song.artist)%></div>
+        </li>
+      <% end %>
+  </ul>
+
+
+  <hr />
+
+  <h2>Popular artists</h2>
+  <ul class="group">
+      <% @pop_artists.each do |artist| %>
+        <li>
+            <div><%= artist.play_count %> plays</div>
+            <div><%= link_to artist.name, artist_path(artist) %></div>
+        </li>
+      <% end %>
+  </ul>
+
+</div>

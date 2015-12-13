@@ -6,6 +6,8 @@ class Artist < ActiveRecord::Base
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  attr_accessor :play_count
+
   def same_as!( artist )
     self.update!( parent_id: artist.id )
     Song.where( artist_id: self.id ).update_all( artist_id: artist.id ) # point all songs that belonged to "self" to new parent artist
@@ -18,6 +20,22 @@ class Artist < ActiveRecord::Base
     else
       found
     end
+  end
+
+  def total_plays
+      songs.inject(0) { |sum, i| sum += i.total_plays }
+  end
+
+  def total_plays_on( station )
+    songs.inject(0) { |sum, i| sum += i.total_plays_on( station ) }
+  end
+
+  def self.newest
+    Artist.order( created_at: :desc ).first
+  end
+
+  def oldest_song
+    songs.order( created_at: :asc ).first
   end
 
 end

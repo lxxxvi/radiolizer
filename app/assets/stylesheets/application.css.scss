@@ -11,9 +11,10 @@
  */
 
 
-@import "bootstrap-sprockets";
-@import "bootswatch/slate/variables";
-@import "bootstrap";
-@import "bootswatch/slate/bootswatch";
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 @import 'global';
+@import 'navigation';
+@import 'home';
+
+
 

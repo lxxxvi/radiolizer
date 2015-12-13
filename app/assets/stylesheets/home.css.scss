@@ -1,0 +1,25 @@
+
+.global-stats {
+
+  li {
+
+    padding: 20px 0;
+    border: 0px $orange solid;
+    border-bottom-width: 2px;
+
+    a {
+      font-size: 1.6rem;
+      }
+
+    > div {
+      text-align: center;
+    }
+
+
+  }
+
+  li:last-child {
+    border-bottom-width: 0;
+  }
+
+}

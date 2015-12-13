@@ -1,6 +1,6 @@
 Radiolizer::Application.routes.draw do
 
-  root 'stations#index'
+  root 'home#index'
 
   resources "songs"
   resources "artists"

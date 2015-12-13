@@ -7,6 +7,39 @@ class Broadcast < ActiveRecord::Base
 
   validates :name, :time, :station_id, :song_id, presence: true
 
+  def self.top_songs( limit )
+
+    top_song_ids = Broadcast.all.
+                             group( :song_id ).
+                             order( 'count_all DESC' ).
+                             count.
+                             take( limit )
+
+    top_songs = Hash[top_song_ids]
+
+    Song.find( top_songs.collect { |k,v| k } ).
+         map{ |s| s.play_count = top_songs[ s.id ] ; s }.
+         sort{ |r,l| l.play_count <=> r.play_count }
+
+  end
+
+  # select( 'artists.id  AS artist_id, count(*) AS play_count ').
+
+  def self.top_artists( limit )
+    top_artist_ids = Broadcast.all.
+                               joins( song: :artist ).
+                               group( 'artists.id' ).
+                               order( 'count_all DESC' ).
+                               count.
+                               take( limit )
+
+    top_artists = Hash[top_artist_ids]
+
+    Artist.find( top_artists.collect{ |k,v| k } ).
+           map{ |a| a.play_count = top_artists[ a.id ] ; a }.
+           sort{ |r,l| l.play_count <=> r.play_count }
+  end
+
   private
   def set_initial_song_id
     self.initial_song_id ||= self.song_id

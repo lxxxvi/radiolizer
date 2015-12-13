@@ -5,4 +5,6 @@ class Station < ActiveRecord::Base
 
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  attr_accessor :play_count
 end
