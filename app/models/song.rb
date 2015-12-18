@@ -26,11 +26,11 @@ class Song < ActiveRecord::Base
   end
 
   def total_plays
-    broadcasts.count
+    @play_count ||= broadcasts.count
   end
 
   def total_plays_on( station )
-    broadcasts.where( 'broadcasts.station_id = ?', station.id ).count
+    @play_count ||= broadcasts.where( 'broadcasts.station_id = ?', station.id ).count
   end
 
   def top_stations

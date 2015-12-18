@@ -1,19 +1,21 @@
 <h1>Stations</h1>
 
-<table>
-  <tr>
-      <th>Station</th>
-      <th>Played songs</th>
-  </tr>
-
+<ul>
   <% @stations.each do |station| %>
-    <tr>
-      <td><%= link_to station['station_name'], station_path( id: station['station_id'] ) %></td>
-      <td><%= station['played_songs'] %></td>
-    </tr>
+    <li>
+      <div class="station">
+        <div>
+            <div class="play-count"><%= station['played_songs'] %></div>
+        </div>
+        <div class="vertical-center">
+          <div>
+            <%= link_to station['station_name'], station_path( id: station['station_id'] ) %></td>
+          </div>
+        </div>
+
+      </div>
+    </li>
   <% end %>
-
-
-</table>
+</ul>
 
 

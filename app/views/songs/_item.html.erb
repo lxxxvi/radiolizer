@@ -1,0 +1,15 @@
+<% if song %>
+  <div class="song">
+      <div>
+        <div class="play-count"><%= song.play_count %></div>
+      </div>
+      <div class="song-details">
+        <div class="vertical-center">
+          <div>
+            <div><%= link_to song.name, song_path(song) %></div>
+            <div><%= link_to song.artist.name, artist_path( song.artist )%></div>
+          </div>
+        </div>
+      </div>
+  </div>
+<% end %>

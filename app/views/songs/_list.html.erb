@@ -1,0 +1,9 @@
+<% if songs.any? %>
+  <ul class="songs">
+      <% songs.each do |song| %>
+        <li>
+          <%= render partial: 'songs/item', locals: { song: song } %>
+        </li>
+      <% end %>
+  </ul>
+<% end %>

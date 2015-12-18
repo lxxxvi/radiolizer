@@ -7,4 +7,13 @@ class Station < ActiveRecord::Base
   validates :name, uniqueness: true
 
   attr_accessor :play_count
+
+  def top_songs( limit )
+    broadcasts.top_songs( limit )
+  end
+
+  def top_artists( limit )
+    broadcasts.top_artists( limit )
+  end
+
 end

@@ -5,19 +5,7 @@
 
 <p><%= @artist.name %> was played <b><%= @artist.total_plays %></b> times so far</p>
 
-<table>
-  <tr>
-      <th>Plays</th>
-      <th>Song</th>
-      <th>Last Played</th>
-  </tr>
-  <% @artist.songs.each do |song| %>
-    <tr>
-      <td><%= song.total_plays %></td>
-      <td><%= link_to song.name, song_path(song) %></td>
-      <td><%= distance_of_time_in_words_to_now( song.last_broadcast.time ) %> ago on <%= link_to song.last_broadcast.station.name, station_path(song.last_broadcast.station)%></td>
-    </tr>
-  <% end %>
-</table>
+<%= column_chart @artist.stations.group('stations.name').count %>
 
-<%= line_chart @artist.songs.joins(:broadcasts).group_by_day('broadcasts.time').count %>
+<h2>Played songs</h2>
+<%= render partial: 'songs/list', locals: { songs: @artist.songs_ranked } %>

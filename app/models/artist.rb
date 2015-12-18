@@ -22,6 +22,10 @@ class Artist < ActiveRecord::Base
     end
   end
 
+  def songs_ranked
+    songs.each { |s| s.total_plays ; s }
+  end
+
   def total_plays
       songs.inject(0) { |sum, i| sum += i.total_plays }
   end
@@ -36,6 +40,10 @@ class Artist < ActiveRecord::Base
 
   def oldest_song
     songs.order( created_at: :asc ).first
+  end
+
+  def stations
+    songs.joins(:stations)
   end
 
 end

@@ -44,7 +44,6 @@ h2 {
   font-size: 1.8rem;
   font-weight: bold;
   color: $blue;
-  text-align: center;
 }
 
 ul {
@@ -68,3 +67,24 @@ th, td {
   text-align: left;
 }
 
+.play-count {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+.play-count::before {
+  content: url('play-count.png');
+  width: 8px;
+  height: 9px;
+  margin-right: 4px;
+
+}
+
+.vertical-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

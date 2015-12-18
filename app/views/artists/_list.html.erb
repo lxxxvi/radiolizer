@@ -1,0 +1,18 @@
+<% if artists.any? %>
+
+  <ul class="artists">
+      <% artists.each do |artist| %>
+        <li>
+          <div class="artist">
+            <div>
+              <div class="play-count"><%= artist.play_count %></div>
+            </div>
+            <div class="vertical-center">
+              <div><%= link_to artist.name, artist_path(artist) %></div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+  </ul>
+
+<% end %>

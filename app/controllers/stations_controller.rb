@@ -9,6 +9,8 @@ class StationsController < ApplicationController
 
   def show
     @station = Station.find( params[:id] )
+
+=begin
     # @most_played_all_time = @station.broadcasts.includes( song: :artist ).select('songs.name AS song_name, artists.name AS artist_name, count(*) AS play_count').group('songs.name, artists.name').order('play_count DESC').limit(5)
     sql = <<EOS
 SELECT s.id         AS song_id
@@ -33,7 +35,10 @@ EOS
                                    group('artists.name, artists.id').
                                    order('play_count DESC').
                                    limit(10)
+=end
+    @most_played_artists = @station.top_artists( 10 )
 
+    @most_played_songs = @station.top_songs( 10 )
 
   end
 end

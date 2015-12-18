@@ -23,15 +23,13 @@ class Broadcast < ActiveRecord::Base
 
   end
 
-  # select( 'artists.id  AS artist_id, count(*) AS play_count ').
-
-  def self.top_artists( limit )
-    top_artist_ids = Broadcast.all.
-                               joins( song: :artist ).
+  def self.top_artists( limit, station = nil )
+    top_artist_ids = Broadcast.where('0=0')
+    top_artist_ids = top_artist_ids.where( 'broadcasts.station_id = ?', station.id ) if station.present?
+    top_artist_ids = top_artist_ids.joins( song: :artist ).
                                group( 'artists.id' ).
                                order( 'count_all DESC' ).
-                               count.
-                               take( limit )
+                               count.take( limit )
 
     top_artists = Hash[top_artist_ids]
 
