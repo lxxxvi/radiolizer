@@ -1,10 +1,16 @@
 class StationsController < ApplicationController
   def index
+
+    @stations = Station.all
+
+=begin
     @stations = Station.select(' stations.name AS station_name, stations.id AS station_id, count(*) as played_songs').
                         joins( :broadcasts ).
                         all.
                         group( 'stations.name, stations.id' ).
                         order( 'stations.name ASC' )
+=end
+
   end
 
   def show

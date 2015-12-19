@@ -16,4 +16,16 @@ class Station < ActiveRecord::Base
     broadcasts.top_artists( limit )
   end
 
+  def play_count
+    broadcasts.count
+  end
+
+  def song_count
+    broadcasts.joins( :song ).group('songs.id').count.count
+  end
+
+  def artist_count
+    broadcasts.joins( song: :artist ).group('artists.id').count.count
+  end
+
 end

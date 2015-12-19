@@ -3,13 +3,11 @@
   <ul class="artists">
       <% artists.each do |artist| %>
         <li>
-          <div class="artist">
-            <div>
+          <div>
+            <%= link_to artist.name, artist_path(artist), class: 'artist' %>
+          </div>
+          <div>
               <div class="play-count"><%= artist.play_count %></div>
-            </div>
-            <div class="vertical-center">
-              <div><%= link_to artist.name, artist_path(artist) %></div>
-            </div>
           </div>
         </li>
       <% end %>

@@ -1,19 +1,16 @@
 <h1>Stations</h1>
 
-<ul>
+<ul class="stations">
   <% @stations.each do |station| %>
     <li>
-      <div class="station">
         <div>
-            <div class="play-count"><%= station['played_songs'] %></div>
+            <%= link_to station.name, station_path( station ), class: 'station'  %>
         </div>
-        <div class="vertical-center">
-          <div>
-            <%= link_to station['station_name'], station_path( id: station['station_id'] ) %></td>
-          </div>
+        <div>
+            <div class="play-count"><%= station.play_count %></div>
+            <div class="artist-count"><%= station.artist_count %></div>
+            <div class="song-count"><%= station.song_count %></div>
         </div>
-
-      </div>
     </li>
   <% end %>
 </ul>
