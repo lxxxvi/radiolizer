@@ -76,24 +76,22 @@ span.play, span.artist, span.song, span.clock {
 }
 
 span.play::before {
-  content: url('play.png');
-  width: 9px;
-  height: 9px;
+  content: image-url('play.png');
   margin-right: 4px;
 }
 
 span.artist::before {
-  content: url('artist.png');
+  content: image-url('artist.png');
   margin-right: 4px;
 }
 
 span.song::before {
-  content: url('song.png');
+  content: image-url('song.png');
   margin-right: 4px;
 }
 
 span.clock::before {
-  content: url('clock.png');
+  content: image-url('clock.png');
   margin-right: 4px;
 }
 
