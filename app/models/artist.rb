@@ -46,4 +46,11 @@ class Artist < ActiveRecord::Base
     songs.joins(:stations)
   end
 
+  def last_broadcast
+    songs.joins( :broadcasts ).order( 'broadcasts.time DESC' ).first.last_broadcast
+  end
+
+  def last_broadcast_on( station )
+    songs.joins( :broadcasts ).where( 'broadcasts.station_id = ?', station.id ).order( 'broadcasts.time DESC' ).first.last_broadcast
+  end
 end

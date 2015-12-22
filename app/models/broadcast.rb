@@ -38,6 +38,10 @@ class Broadcast < ActiveRecord::Base
            sort{ |r,l| l.play_count <=> r.play_count }
   end
 
+  def self.last_play_of( song )
+    where( 'broadcasts.song_id = ?', song.id )
+  end
+
   private
   def set_initial_song_id
     self.initial_song_id ||= self.song_id

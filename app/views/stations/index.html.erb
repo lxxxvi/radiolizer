@@ -7,9 +7,9 @@
             <%= link_to station.name, station_path( station ), class: 'station'  %>
         </div>
         <div>
-            <div class="play-count"><%= station.play_count %></div>
-            <div class="artist-count"><%= station.artist_count %></div>
-            <div class="song-count"><%= station.song_count %></div>
+            <span class="play"><%= number_to_human(station.play_count) %></span>
+            <span class="artist"><%= number_to_human(station.artist_count) %></span>
+            <span class="song"><%= number_to_human(station.song_count) %></span>
         </div>
     </li>
   <% end %>

@@ -48,6 +48,10 @@ class Song < ActiveRecord::Base
     broadcasts.order( time: :desc ).first
   end
 
+  def last_broadcast_on( station )
+    broadcasts.where( 'broadcasts.station_id = ?', station.id ).order( time: :desc ).first
+  end
+
   def self.newest
     Song.order( created_at: :desc ).first
   end

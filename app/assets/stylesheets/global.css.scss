@@ -25,11 +25,11 @@ a {
   font-size: 16px;
 }
 
-a.song          { color: $orange;   }
+a.song          { color: $orange; font-size: 24px;  }
 a.song:hover    { color: darken($orange, 15%); }
-a.artist        { color: $brown; }
+a.artist        { color: $brown; font-size: 18px; }
 a.artist:hover  { color: lighten($brown, 15%); }
-a.station       { color: $blue; }
+a.station       { color: $blue; font-size: 24px; }
 a.station:hover { color: lighten($blue, 15%); }
 h1 {
   font-size: 2.4rem;
@@ -69,24 +69,32 @@ th, td {
   text-align: left;
 }
 
-.play-count, .artist-count, .song-count {
+span.play, span.artist, span.song, span.clock {
   font-size: 12px;
   display: inline-block;
+  margin-right: 10px;
 }
 
-.play-count::before {
-  content: url('play-count.png');
-  width: 8px;
+span.play::before {
+  content: url('play.png');
+  width: 9px;
   height: 9px;
   margin-right: 4px;
 }
 
-.artist-count::before {
-  content: 'A ';
+span.artist::before {
+  content: url('artist.png');
+  margin-right: 4px;
 }
 
-.song-count::before {
-  content: 'S ';
+span.song::before {
+  content: url('song.png');
+  margin-right: 4px;
+}
+
+span.clock::before {
+  content: url('clock.png');
+  margin-right: 4px;
 }
 
 .vertical-center {

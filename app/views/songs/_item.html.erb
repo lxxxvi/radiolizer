@@ -4,6 +4,13 @@
       <%= link_to song.artist.name, artist_path( song.artist ), class: 'artist' %>
     </div>
     <div>
-        <span class="play-count"><%= song.play_count %></span>
+        <span class="play"><%= song.play_count %></span>
+        <span class="clock"> Last played
+          <% if @station %>
+            <%= distance_of_time_in_words_to_now( song.last_broadcast_on( @station ).time ) %> ago
+          <% else %>
+            <%= distance_of_time_in_words_to_now( song.last_broadcast.time ) %> ago on <%= song.last_broadcast.station.name %>
+          <% end %>
+        </span>
     </div>
 <% end %>

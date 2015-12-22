@@ -1,11 +1,10 @@
 <h1><%= @station.name %></h1>
 
 <h2>Popular songs on <%= @station.name%></h2>
-<%= render partial: 'songs/list', locals: { songs: @most_played_songs } %>
+<%= render partial: 'songs/list', locals: { songs: @station.top_songs( 10 ) } %>
 
 <hr />
 
 
-
 <h2>Popular artists on <%= @station.name %></h2>
-<%= render partial: 'artists/list', locals: { artists: @most_played_artists } %>
+<%= render partial: 'artists/list', locals: { artists: @station.top_artists( 10 ) } %>
