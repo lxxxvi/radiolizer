@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  awardable_id: 1
+  awardable_type: MyString
+  station_id: 1
+  trophy_id: 1
+  epoch: MyString
+
+two:
+  awardable_id: 1
+  awardable_type: MyString
+  station_id: 1
+  trophy_id: 1
+  epoch: MyString

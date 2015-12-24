@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204090000) do
+ActiveRecord::Schema.define(version: 20151223095512) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -19,6 +19,19 @@ ActiveRecord::Schema.define(version: 20151204090000) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "awards", force: :cascade do |t|
+    t.integer  "awardable_id",   limit: 4
+    t.string   "awardable_type", limit: 255
+    t.integer  "station_id",     limit: 4
+    t.integer  "trophy_id",      limit: 4
+    t.string   "epoch",          limit: 255
+    t.integer  "play_count",     limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "awards", ["awardable_type", "awardable_id"], name: "index_awards_on_awardable_type_and_awardable_id", using: :btree
 
   create_table "broadcasts", force: :cascade do |t|
     t.datetime "time"
@@ -59,6 +72,16 @@ ActiveRecord::Schema.define(version: 20151204090000) do
     t.string   "endpoint",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "trophies", force: :cascade do |t|
+    t.string   "name",          limit: 255
+    t.integer  "rank",          limit: 4
+    t.string   "frequency",     limit: 255
+    t.integer  "points",        limit: 4
+    t.string   "applicable_on", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end

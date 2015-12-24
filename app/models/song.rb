@@ -4,6 +4,7 @@ class Song < ActiveRecord::Base
   has_many :stations, through: :broadcasts
   has_many :children, class_name: 'Song', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Song'
+  has_many :awards, as: :awardable
 
   before_create :set_initial_artist_id
 

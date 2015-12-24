@@ -13,3 +13,24 @@ stations = Station.create( [
    { name: "Radio SRF Musikwelle", endpoint: "http://www.srf.ch/radio-srf-musikwelle/programm/musik" } ,
    { name: "Radio SRF Virus",      endpoint: "http://www.srf.ch/radio-srf-virus/programm/musik" }
   ] )
+
+trophies = Trophy.create( [
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 1,  frequency: 'week',   points:  13 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 2,  frequency: 'week',   points:   8 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 3,  frequency: 'week',   points:   5 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 1,  frequency: 'month',  points:  55 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 2,  frequency: 'month',  points:  34 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 3,  frequency: 'month',  points:  21 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 1,  frequency: 'year',   points: 987 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 2,  frequency: 'year',   points: 610 },
+   { name: 'Most Played Songs',     applicable_on: 'songs',    rank: 3,  frequency: 'year',   points: 377 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 1,  frequency: 'week',   points:   5 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 2,  frequency: 'week',   points:   3 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 3,  frequency: 'week',   points:   2 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 1,  frequency: 'month',  points:  21 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 2,  frequency: 'month',  points:  13 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 3,  frequency: 'month',  points:   8 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 1,  frequency: 'year',   points: 377 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 2,  frequency: 'year',   points: 233 },
+   { name: 'Most Played Artists',   applicable_on: 'artists',  rank: 3,  frequency: 'year',   points: 144 }
+])

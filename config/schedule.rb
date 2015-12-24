@@ -31,3 +31,11 @@ end
 every 1.day, at: '11:00 pm' do
   rake "crawl:full"
 end
+
+every :monday, at: '3am' do
+  rake "awards:weekly"
+end
+
+every '10 3 1 * *' do
+  rake "awards:monthly"
+end

@@ -1,5 +1,7 @@
 Radiolizer::Application.routes.draw do
 
+  get 'awards/index'
+
   root 'home#index'
 
   resources "songs"

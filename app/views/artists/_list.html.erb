@@ -3,20 +3,7 @@
   <ul class="artists">
       <% artists.each do |artist| %>
         <li>
-          <div>
-            <%= link_to artist.name, artist_path(artist), class: 'artist' %>
-          </div>
-          <div>
-              <span class="play"><%= artist.play_count %></span>
-              <span class="clock">Last played
-                  <% if @station %>
-                    <%= distance_of_time_in_words_to_now( artist.last_broadcast_on( @station ).time ) %> ago
-                  <% else %>
-                    <%= distance_of_time_in_words_to_now( artist.last_broadcast.time ) %> ago on <%= artist.last_broadcast.station.name %>
-                  <% end %>
-              </span>
-
-          </div>
+          <%= render partial: 'artists/item', locals: { artist: artist } %>
         </li>
       <% end %>
   </ul>

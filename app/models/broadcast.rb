@@ -23,6 +23,10 @@ class Broadcast < ActiveRecord::Base
 
   end
 
+  def self.top_song_ids_ranked( limit )
+
+  end
+
   def self.top_artists( limit, station = nil )
     top_artist_ids = Broadcast.where('0=0')
     top_artist_ids = top_artist_ids.where( 'broadcasts.station_id = ?', station.id ) if station.present?

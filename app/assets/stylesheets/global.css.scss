@@ -69,7 +69,7 @@ th, td {
   text-align: left;
 }
 
-span.play, span.artist, span.song, span.clock {
+span.play, span.artist, span.song, span.clock, span.trophy {
   font-size: 12px;
   display: inline-block;
   margin-right: 10px;
@@ -101,8 +101,27 @@ span.clock::before {
     justify-content: center;
 }
 
+span.gold::before {
+  content: image-url('gold.png');
+  margin-right: 4px;
+}
 
-ul.songs, ul.artists, ul.stations {
+span.silver::before {
+  content: image-url('silver.png');
+  margin-right: 4px;
+}
+
+span.bronze::before {
+  content: image-url('bronze.png');
+  margin-right: 4px;
+}
+
+span.trophy::before {
+  content: image-url('trophy.png');
+  margin-right: 4px;
+}
+
+ul.songs, ul.artists, ul.stations, ul.awards {
   li {
     padding: 10px 0;
     border: 0px solid $beige;

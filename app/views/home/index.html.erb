@@ -2,11 +2,11 @@
 
 <div>
 
-  <h2>Popular songs</h2>
-  <%= render partial: 'songs/list', locals: { songs: @pop_songs } %>
+  <h2>Latest awarded songs</h2>
+  <%= render partial: 'awards/list', locals: { awards: @awarded_songs } %>
 
   <hr />
-  <h2>Popular artists</h2>
-    <%= render partial: 'artists/list', locals: { artists: @pop_artists } %>
+  <h2>Latest awarded artists</h2>
+  <%= render partial: 'awards/list', locals: { awards: @awarded_artists } %>
 
 </div>

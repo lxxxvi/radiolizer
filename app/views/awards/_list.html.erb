@@ -1,0 +1,18 @@
+<% if awards.any? %>
+
+  <ul class="awards">
+    <% awards.each do |award| %>
+      <li>
+          <div class="title"><%= award.full_award_name.html_safe %></div>
+          <% unless defined?(hide_winner) %>
+            <% if award.awardable_type ==  'Song' %>
+              <%= render partial: 'songs/item', locals: { song: award.awardable } %>
+            <% elsif award.awardable_type == 'Artist' %>
+              <%= render partial: 'artists/item', locals: { artist: award.awardable } %>
+            <% end %>
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>

@@ -2,6 +2,7 @@ class Artist < ActiveRecord::Base
   has_many :songs
   has_many :children, class_name: 'Artist', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Artist'
+  has_many :awards, as: :awardable
 
   validates :name, presence: true
   validates :name, uniqueness: true

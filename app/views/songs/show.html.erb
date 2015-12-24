@@ -1,8 +1,13 @@
 <%= button_tag "Back", { onclick: 'history.go(-1); return false;' } %><br />
-<h1><%= @song.name %> by <%= link_to @song.artist.name, @song.artist %></h1>
+<h1><%= @song.name %> by <%= link_to @song.artist.name, @song.artist, class: 'artist' %></h1>
 
 <h2>Where this song is played</h2>
 <%= column_chart @song.stations.group( 'stations.name' ).count %>
+
+<% if @song.awards.any? %>
+<h2>Won awards</h2>
+<%= render partial: 'awards/list', locals: { awards: @song.awards, hide_winner: true } %>
+<% end %>
 
 <h2>Broadcast history</h2>
 <table>

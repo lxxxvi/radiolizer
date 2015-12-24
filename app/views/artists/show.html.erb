@@ -7,5 +7,10 @@
 
 <%= column_chart @artist.stations.group('stations.name').count %>
 
+<% if @artist.awards.any? %>
+<h2>Won awards</h2>
+<%= render partial: 'awards/list', locals: { awards: @artist.awards, hide_winner: true } %>
+<% end %>
+
 <h2>Played songs</h2>
 <%= render partial: 'songs/list', locals: { songs: @artist.songs_ranked } %>
