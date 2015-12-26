@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  frequency: MyString
+  epoch_start: 2015-12-04 10:43:53
+  epoch_end: 2015-12-04 10:43:53
+  epoch_name: MyString
+
+two:
+  frequency: MyString
+  epoch_start: 2015-12-04 10:43:53
+  epoch_end: 2015-12-04 10:43:53
+  epoch_name: MyString

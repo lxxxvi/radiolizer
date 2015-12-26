@@ -2,11 +2,11 @@ desc 'Award songs or artists'
 namespace :awards do
 
   task weekly: :environment do
-    Station.weekly_awards
+    Ceremony.prepare( 'week', DateTime.now.last_week ).perform
   end
 
   task monthly: :environment do
-    Station.monthly_awards
+    Ceremony.prepare( 'month', DateTime.now.last_week ).perform
   end
 
 end

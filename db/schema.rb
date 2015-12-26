@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151223095512) do
+ActiveRecord::Schema.define(version: 20151226134509) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20151223095512) do
     t.string   "awardable_type", limit: 255
     t.integer  "station_id",     limit: 4
     t.integer  "trophy_id",      limit: 4
-    t.string   "epoch",          limit: 255
     t.integer  "play_count",     limit: 4
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.integer  "ceremony_id",    limit: 4,   null: false
   end
 
   add_index "awards", ["awardable_type", "awardable_id"], name: "index_awards_on_awardable_type_and_awardable_id", using: :btree
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20151223095512) do
 
   add_index "broadcasts", ["song_id"], name: "index_broadcasts_on_song_id", using: :btree
   add_index "broadcasts", ["station_id"], name: "index_broadcasts_on_station_id", using: :btree
+
+  create_table "ceremonies", force: :cascade do |t|
+    t.string   "frequency",   limit: 255
+    t.datetime "epoch_start"
+    t.datetime "epoch_end"
+    t.string   "epoch_name",  limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "crawls", force: :cascade do |t|
     t.integer  "station_id",       limit: 4

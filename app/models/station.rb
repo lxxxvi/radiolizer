@@ -40,25 +40,4 @@ class Station < ActiveRecord::Base
     broadcasts.where( 'broadcasts.time BETWEEN ? AND ?', datetime.beginning_of_year, datetime.end_of_year )
   end
 
-  def self.weekly_awards( datetime = DateTime.now.last_week )
-    Station.all.each do |station|
-      Trophy.award_most_played_artists( datetime, 'week', station )
-      Trophy.award_most_played_songs( datetime, 'week', station )
-    end
-  end
-
-  def self.monthly_awards( datetime = DateTime.now.last_month )
-    Station.all.each do |station|
-      Trophy.award_most_played_artists( datetime, 'month', station )
-      Trophy.award_most_played_songs( datetime, 'month', station )
-    end
-  end
-
-  def self.yearly_awards( datetime = DateTime.now.last_year )
-    Station.all.each do |station|
-      Trophy.award_most_played_artists( datetime, 'year', station )
-      Trophy.award_most_played_songs( datetime, 'year', station )
-    end
-  end
-
 end
