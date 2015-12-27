@@ -23,6 +23,10 @@ class Broadcast < ActiveRecord::Base
 
   end
 
+  def self.most_played_song
+    top_songs( 1 ).first
+  end
+
   def self.top_song_ids_ranked( limit )
 
   end
@@ -40,6 +44,10 @@ class Broadcast < ActiveRecord::Base
     Artist.find( top_artists.collect{ |k,v| k } ).
            map{ |a| a.play_count = top_artists[ a.id ] ; a }.
            sort{ |r,l| l.play_count <=> r.play_count }
+  end
+
+  def self.most_played_artist
+    top_artists( 1 ).first
   end
 
   def self.last_play_of( song )

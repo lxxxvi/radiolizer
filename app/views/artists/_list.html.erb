@@ -3,7 +3,7 @@
   <ul class="artists">
       <% artists.each do |artist| %>
         <li>
-          <%= render partial: 'artists/item', locals: { artist: artist } %>
+          <%= render partial: 'artists/item', locals: { artist: artist, display: display } %>
         </li>
       <% end %>
   </ul>

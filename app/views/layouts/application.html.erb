@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Radiolizer</title>
+  <title>Radiolizer - Analyzing Radio Stations</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
@@ -9,10 +9,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <h1>Radiolizer</h1>
   <nav class="top">
     <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Stations", stations_path %></li>
+      <li><%= link_to 'Home', root_path %></li>
+      <li><%= link_to 'Stations', stations_path %></li>
     </ul>
   </nav>
 
@@ -20,6 +21,8 @@
       <%= yield %>
   </div>
 
-
+  <div class="footer">
+      2015
+  </div>
 </body>
 </html>

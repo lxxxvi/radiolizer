@@ -57,6 +57,10 @@ class Song < ActiveRecord::Base
     Song.order( created_at: :desc ).first
   end
 
+  def self.most_played
+    Broadcast.most_played_song
+  end
+
   private
   def set_initial_artist_id
     self.initial_artist_id ||= self.artist_id

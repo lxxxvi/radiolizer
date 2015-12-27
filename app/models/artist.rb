@@ -51,6 +51,14 @@ class Artist < ActiveRecord::Base
     songs.joins( :broadcasts ).order( 'broadcasts.time DESC' ).first.last_broadcast
   end
 
+  def self.most_played
+    Broadcast.most_played_artist
+  end
+
+  def self.most_songs
+    Artist.find( Song.all.group( :artist_id ).order( 'count_all DESC' ).count.take(1).first[0] )
+  end
+
   def last_broadcast_on( station )
     songs.joins( :broadcasts ).where( 'broadcasts.station_id = ?', station.id ).order( 'broadcasts.time DESC' ).first.last_broadcast
   end

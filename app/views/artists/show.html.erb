@@ -1,16 +1,16 @@
 <%= button_tag "Back", { onclick: 'history.go(-1); return false;' } %>
 <br />
 
-<h1><%= @artist.name %></h1>
+<h2><%= @artist.name %></h2>
 
 <p><%= @artist.name %> was played <b><%= @artist.total_plays %></b> times so far</p>
 
 <%= column_chart @artist.stations.group('stations.name').count %>
 
 <% if @artist.awards.any? %>
-<h2>Won awards</h2>
+<h3>Won awards</h3>
 <%= render partial: 'awards/list', locals: { awards: @artist.awards, hide_winner: true } %>
 <% end %>
 
-<h2>Played songs</h2>
-<%= render partial: 'songs/list', locals: { songs: @artist.songs_ranked } %>
+<h3>Played songs</h3>
+<%= render partial: 'songs/list', locals: { songs: @artist.songs.order( 'songs.name ASC') , display: [ :play_count ] } %>

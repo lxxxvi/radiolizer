@@ -20,6 +20,10 @@ class Station < ActiveRecord::Base
     broadcasts.count
   end
 
+  def latest_broadcast
+    broadcasts.order( time: :desc ).first
+  end
+
   def song_count
     broadcasts.joins( :song ).group('songs.id').count.count
   end

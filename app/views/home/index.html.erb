@@ -1,12 +1,43 @@
-<h1>Radiolizer</h1>
+<h2>Home</h2>
 
-<div>
+<div class="facts">
+  <div class="fact">
+    <div>
+      <b>Newest song</b>
+      <%= render partial: 'songs/item', locals: { song: Song.newest, display: [ :first_played ] } %>
+    </div>
+  </div>
 
-  <h2>Latest awarded songs</h2>
-  <%= render partial: 'awards/list', locals: { awards: @awarded_songs } %>
+  <div class="fact">
+    <div>
+      <b>Most played song overall</b>
+      <%= render partial: 'songs/item', locals: { song: Song.most_played, display: [ :play_count ] } %>
+    </div>
+  </div>
 
-  <hr />
-  <h2>Latest awarded artists</h2>
-  <%= render partial: 'awards/list', locals: { awards: @awarded_artists } %>
+  <div class="fact">
+    <div>
+      <b>Most played artist overall</b>
+      <%= render partial: 'artists/item', locals: { artist: Artist.most_played, display: [ :play_count ] } %>
+    </div>
+  </div>
+
+  <div class="fact">
+      <div>
+          <b>Artist with most songs</b>
+          <%= render partial: 'artists/item', locals: { artist: Artist.most_songs, display: [ :song_count ] } %>
+      </div>
+  </div>
 
 </div>
+
+
+<h2>Lately On-Air</h2>
+<table>
+<% Station.all.each do |station| %>
+  <tr>
+      <td><%= link_to station.name, station_path( station ) %></td>
+      <td><%= render partial: 'songs/item', locals: { song: station.latest_broadcast.song, display: [ :last_played ] } %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,73 +1,74 @@
 
-$orange: #EA6045;
-$brown: #7d3e3a;
-$yellow: #F8CA4D;
-$beige: #F5E5C0;
-$blue: #3F5666;
-$darkblue: #2F3440;
-
+$orange: #eb6a19;
 
 * {
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
-  font-size: 14px;
-  color: $darkblue;
+  font-size: 12px;
+  font-weight: 100;
+  text-decoration: none;
 }
 
 body {
-  background-color: #fff;
-  color: $darkblue;
+  margin: 0 auto;
+  max-width: 900px;
 }
 
 a {
-  text-decoration: none;
-  font-size: 16px;
+  font-weight: 400;
+  color: black;
+  font-size: 18px;
 }
 
-a.song          { color: $orange; font-size: 24px;  }
-a.song:hover    { color: darken($orange, 15%); }
-a.artist        { color: $brown; font-size: 18px; }
-a.artist:hover  { color: lighten($brown, 15%); }
-a.station       { color: $blue; font-size: 24px; }
-a.station:hover { color: lighten($blue, 15%); }
-h1 {
-  font-size: 2.4rem;
+a:hover {
+  color: $orange;
+}
+
+h1, h2, h3, h4, h5 {
 }
 
 h1 {
-  display: inline-block;
-  border: 0 solid $orange;
-  border-bottom-width: 2px;
-  margin: 20px 0 30px 0;
+  font-family: "Pacifico", sans-serif;
+  margin: 40px 0;
+  font-size: 800%;
+  text-align: center;
+  color: $orange;
 }
 
 h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: $blue;
+  margin: 20px 10px;
+  font-size: 48px;
+  font-weight: 100;
 }
+
+h3 {
+  font-weight: 300;
+  font-size: 18px;
+  margin-top: 30px;
+  color: $orange;
+}
+
 
 ul {
     list-style: none;
 }
 
-hr {
-  margin: 30px 0;
-  border-color: transparentize($blue, 0.9);
-}
 
 p {
   margin: 10px 0;
 }
 
-.container {
-  margin: 10px 20px;
+table {
+  margin: 0 10px;
 }
 
 th, td {
   text-align: left;
+  padding: 10px 5px 10px 0;
+  vertical-align: top;
 }
+
 
 span.play, span.artist, span.song, span.clock, span.trophy {
   font-size: 12px;
@@ -124,11 +125,33 @@ span.trophy::before {
 ul.songs, ul.artists, ul.stations, ul.awards {
   li {
     padding: 10px 0;
-    border: 0px solid $beige;
+    border: 0px solid grey;
     border-bottom-width: 1px;
   }
 
   li:last-child {
     border-bottom-width: 0;
   }
+}
+
+.facts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .fact {
+    margin: 0 0 20px 0;
+    width: 50%;
+
+    > div {
+      margin: 10px;
+    }
+  }
+}
+
+.footer {
+  border: 0 solid black;
+  border-top-width: 1px;
+  margin: 100px 0;
+  text-align: center;
 }

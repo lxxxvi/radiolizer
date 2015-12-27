@@ -3,6 +3,7 @@ nav.top {
     display: flex;
     flex-direction: row;
     list-style: none;
+    font-weight: 100;
 
     li {
       flex: 1;
@@ -14,13 +15,15 @@ nav.top {
   a {
     display: inline-block;
     color: black;
-    font-size: 1.3rem;
+    font-size: 18px;
+    font-weight: 100;
     width: 100%;
     height: 100%;
     text-align: center;
     padding: 20px 0;
-    border: 0px solid $yellow;
-    border-bottom-width: 4px;
+    border: 0 solid black;
+    border-top-width: 4px;
+    border-bottom-width: 2px;
   }
 
   a:first-child {
@@ -32,6 +35,7 @@ nav.top {
   }
 
   a:hover {
+    color: $orange;
     border-bottom-color: $orange;
   }
 }

@@ -2,7 +2,7 @@
   <ul class="songs">
       <% songs.each do |song| %>
         <li>
-          <%= render partial: 'songs/item', locals: { song: song } %>
+          <%= render partial: 'songs/item', locals: { song: song, display: display } %>
         </li>
       <% end %>
   </ul>
