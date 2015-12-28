@@ -1,5 +1,26 @@
 ul.awards {
-  div.title {
-      margin: 10px 0;
-    }
+
+  li {
+    margin: 10px 0;
+  }
+
+  .trophy, .epoch_name {
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  .gold, .silver, .bronze {
+    display: inline-block;
+    padding: 2px 0;
+    width: 60px;
+    text-align: right;
+    font-weight: 300;
+  }
+
+/*
+  .gold   {  color: $gold;    }
+  .silver {  color: $silver;  }
+  .bronze {  color: $bronze;  }
+*/
+
 }

@@ -2,8 +2,12 @@
 <% display = [] unless display %>
     <div class="song">
       <%= link_to song.name, song_path(song), class: 'song' %>
+
+      <% if display.include?(:artist) %>
       <span> by </span>
       <%= link_to song.artist.name, artist_path( song.artist ), class: 'artist' %>
+      <% end %>
+
       <div class="details">
         <% if display.include?(:awards) %>
           <span class="trophy"><%= song.awards.count %></span>

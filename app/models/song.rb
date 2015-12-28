@@ -17,6 +17,26 @@ class Song < ActiveRecord::Base
     Broadcast.where( song_id: self.id ).update_all( song_id: song.id )
   end
 
+  def self.on( station )
+    joins( broadcasts: :station ).where( 'stations.name = ?', station.name )
+  end
+
+  def on( station )
+    broadcasts.joins( :station ).where( 'stations.name = ?', station.name )
+  end
+
+  def self.top( limit )
+    joins( :broadcasts ).group( 'songs.id' ).order( 'count_all DESC' ).count.take( limit )
+  end
+
+  def self.newest
+    Song.order( created_at: :desc ).first
+  end
+
+  def self.most_played
+    Broadcast.most_played_song
+  end
+
   def self.find_parent_or_create( attributes )
     found = Song.find_or_create_by( attributes )
     if found.parent
@@ -26,8 +46,8 @@ class Song < ActiveRecord::Base
     end
   end
 
-  def total_plays
-    @play_count ||= broadcasts.count
+  def total_plays( time_limit = DateTime.new )
+    broadcasts.where('broadcasts.time > ?', time_limit).count
   end
 
   def total_plays_on( station )
@@ -50,16 +70,9 @@ class Song < ActiveRecord::Base
   end
 
   def last_broadcast_on( station )
-    broadcasts.where( 'broadcasts.station_id = ?', station.id ).order( time: :desc ).first
+    on( station ).order( 'broadcasts.time DESC' ).first
   end
 
-  def self.newest
-    Song.order( created_at: :desc ).first
-  end
-
-  def self.most_played
-    Broadcast.most_played_song
-  end
 
   private
   def set_initial_artist_id

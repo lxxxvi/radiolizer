@@ -1,25 +1,58 @@
-<%= button_tag "Back", { onclick: 'history.go(-1); return false;' } %><br />
-<h2><%= @song.name %> by <%= link_to @song.artist.name, @song.artist, class: 'artist' %></h2>
+<%= link_to 'Back', '#', { class: 'back', onclick: 'history.go(-1); return false;' } %><br />
+<h2><%= @song.name %><span class="tiny"> by <%= link_to @song.artist.name, @song.artist, class: 'artist' %></span></h2>
 
-<h3>Where this song is played</h3>
-<%= column_chart @song.stations.group( 'stations.name' ).count %>
+<h3>Stations</h3>
+<div class="facts">
+    <div>
+        <div class="fact">
+          <b>Last played on station</b>
+          <%= link_to @song.last_broadcast.station.name, stations_path( @song.last_broadcast.station) %>
+          <%= distance_of_time_in_words_to_now( @song.last_broadcast.time ) %> ago
+        </div>
+    </div>
+    <div>
+        <div class="fact">
+            <b>Where this song is played</b>
+            <ul>
+                <% @song.stations.group( 'stations.id' ).count.each do |station_id, count| %>
+                  <% station = Station.find(station_id) %>
+                  <li><%= link_to station.name, station_path( station ) %> <%= count %> <%= 'play'.pluralize(count) %></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+    <div>
+      <div class="fact">
+        <b>First appearance</b>
+       <%= link_to @song.first_broadcast.station.name, station_path( @song.first_broadcast.station ) %> on <%= @song.first_broadcast.time.strftime("%d %B %Y") %>
+     </div>
+    </div>
+</div>
+
+<h3>Broadcasts</h3>
+<%
+  plays_within_days = {
+      'Past 7 days': @song.total_plays( 7.days.ago ),
+     'Past 30 days': @song.total_plays( 30.days.ago ),
+    'Past 365 days': @song.total_plays( 365.days.ago ),
+         'All time': @song.total_plays
+    }
+ %>
+<div class="broadcast_statistics">
+  <% plays_within_days.each do |time, count| %>
+      <div>
+          <div class="stats">
+              <b><%= time %></b>
+              <span class="big"><%= count %></span> <%= 'play'.pluralize( count ) %>
+          </div>
+      </div>
+  <% end %>
+ </div>
 
 <% if @song.awards.any? %>
-<h3>Won awards</h3>
+<h3>Radiolizer awards</h3>
 <%= render partial: 'awards/list', locals: { awards: @song.awards, hide_winner: true } %>
 <% end %>
 
-<h3>Broadcast history</h3>
-<table>
-  <tr>
-      <th>Time</th>
-      <th>Station</th>
-  </tr>
-  <% @song.broadcasts.order('broadcasts.time DESC').each do |broadcast| %>
-      <tr>
-        <td><%= broadcast.time %></td>
-        <td><%= link_to broadcast.station.name, station_path(broadcast.station) %></td>
-      </tr>
-  <% end %>
-</table>
+<% # TODO broadcast history %>
 

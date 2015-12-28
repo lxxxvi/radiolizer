@@ -1,29 +1,30 @@
 <h2>Home</h2>
 
 <div class="facts">
-  <div class="fact">
-    <div>
+  <div>
+    <div class="fact">
       <b>Newest song</b>
-      <%= render partial: 'songs/item', locals: { song: Song.newest, display: [ :first_played ] } %>
+      <%= render partial: 'songs/item', locals: { song: Song.newest, display: [ :first_played, :artist ] } %>
     </div>
   </div>
 
-  <div class="fact">
-    <div>
+  <div>
+    <div class="fact">
       <b>Most played song overall</b>
-      <%= render partial: 'songs/item', locals: { song: Song.most_played, display: [ :play_count ] } %>
+      <%= render partial: 'songs/item', locals: { song: Song.most_played, display: [ :play_count, :artist ] } %>
     </div>
   </div>
 
-  <div class="fact">
-    <div>
+  <div>
+    <div class="fact">
       <b>Most played artist overall</b>
       <%= render partial: 'artists/item', locals: { artist: Artist.most_played, display: [ :play_count ] } %>
     </div>
   </div>
 
-  <div class="fact">
-      <div>
+
+    <div>
+       <div class="fact">
           <b>Artist with most songs</b>
           <%= render partial: 'artists/item', locals: { artist: Artist.most_songs, display: [ :song_count ] } %>
       </div>

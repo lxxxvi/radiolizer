@@ -1,4 +1,4 @@
-<%= button_tag "Back", { onclick: 'history.go(-1); return false;' } %>
+<%= link_to 'Back', '#', { class: 'back', onclick: 'history.go(-1); return false;' } %>
 <br />
 
 <h2><%= @artist.name %></h2>
