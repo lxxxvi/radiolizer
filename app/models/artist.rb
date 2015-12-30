@@ -24,15 +24,15 @@ class Artist < ActiveRecord::Base
   end
 
   def songs_ranked
-    songs.each { |s| s.total_plays ; s }
+    songs.each { |s| s.count_plays ; s }.sort_by{ |s| s.play_count }.reverse
   end
 
-  def total_plays
-      songs.inject(0) { |sum, i| sum += i.total_plays }
+  def count_plays( time_limit = DateTime.new )
+      songs.inject(0) { |sum, i| sum += i.count_plays( time_limit ) }
   end
 
-  def total_plays_on( station )
-    songs.inject(0) { |sum, i| sum += i.total_plays_on( station ) }
+  def count_plays_on( station )
+    songs.inject(0) { |sum, i| sum += i.count_plays_on( station ) }
   end
 
   def self.newest
@@ -49,6 +49,10 @@ class Artist < ActiveRecord::Base
 
   def last_broadcast
     songs.joins( :broadcasts ).order( 'broadcasts.time DESC' ).first.last_broadcast
+  end
+
+  def first_broadcast
+    songs.joins( :broadcasts ).order( 'broadcasts.time ASC' ).first.first_broadcast
   end
 
   def self.most_played

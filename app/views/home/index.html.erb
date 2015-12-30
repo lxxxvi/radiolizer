@@ -22,7 +22,6 @@
     </div>
   </div>
 
-
     <div>
        <div class="fact">
           <b>Artist with most songs</b>
@@ -38,7 +37,7 @@
 <% Station.all.each do |station| %>
   <tr>
       <td><%= link_to station.name, station_path( station ) %></td>
-      <td><%= render partial: 'songs/item', locals: { song: station.latest_broadcast.song, display: [ :last_played ] } %></td>
+      <td><%= render partial: 'songs/item', locals: { song: station.latest_broadcast.song, display: [ :last_played, :artist ] } %></td>
   </tr>
 <% end %>
 </table>

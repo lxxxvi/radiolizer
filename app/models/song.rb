@@ -46,12 +46,13 @@ class Song < ActiveRecord::Base
     end
   end
 
-  def total_plays( time_limit = DateTime.new )
-    broadcasts.where('broadcasts.time > ?', time_limit).count
+  def count_plays( time_limit = DateTime.new )
+    self.play_count = broadcasts.where('broadcasts.time > ?', time_limit).count
   end
 
-  def total_plays_on( station )
-    @play_count ||= broadcasts.where( 'broadcasts.station_id = ?', station.id ).count
+
+  def count_plays_on( station )
+    self.play_count = broadcasts.where( 'broadcasts.station_id = ?', station.id ).count
   end
 
   def top_stations

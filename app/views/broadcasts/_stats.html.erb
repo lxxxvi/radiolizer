@@ -1,0 +1,37 @@
+<% if item %>
+<div class="broadcasts">
+  <h4>By station</h4>
+  <div class="stats">
+      <% item.stations.group( :station_id ).count.each do |station_id, count| %>
+      <% station = Station.find(station_id) %>
+        <div>
+            <div class="stat">
+                <b><%= station.name %></b>
+                <span class="big"><%= count %></span> <%= 'play'.pluralize( count ) %>
+            </div>
+        </div>
+      <% end %>
+  </div>
+
+  <%
+     by_time = {
+             'Past 7 days': item.count_plays( 7.days.ago ),
+             'Past 30 days': item.count_plays( 30.days.ago ),
+             'Past 365 days': item.count_plays( 365.days.ago ),
+             'All time': item.count_plays
+     }
+  %>
+
+  <h4>By time</h4>
+  <div class="stats">
+      <% by_time.each do |time, count| %>
+      <div>
+          <div class="stat">
+              <b><%= time %></b>
+              <span class="big"><%= count %></span> <%= 'play'.pluralize( count ) %>
+          </div>
+      </div>
+      <% end %>
+  </div>
+</div>
+<% end %>

@@ -2,16 +2,19 @@
 <% display = [] unless display %>
 
 <div class="artist">
-    <%= link_to artist.name, artist_path(artist), class: 'artist' %>
 
-    <div class="details">
+    <div class="name">
+      <%= link_to artist.name, artist_path(artist), class: 'artist' %>
+    </div>
+
+    <div class="info">
 
         <% if display.include?(:play_count) && artist.play_count %>
-          <span class="play"><%= artist.play_count %></span>
+          <%= artist.play_count %> <%= 'play'.pluralize( artist.play_count) %>
         <% end %>
 
         <% if display.include?(:first_played) %>
-          <span class="clock">First played
+          First played
               <% if @station %>
             <%= artist.first_broadcast_on( @station ).time  %>
           <% else %>
@@ -31,7 +34,7 @@
         <% end %>
 
         <% if display.include?(:song_count) %>
-          <span class="song"><%= artist.songs.count %></span>
+          <%= artist.songs.count %> <%= 'song'.pluralize( artist.songs.count ) %>
         <% end %>
     </div>
 

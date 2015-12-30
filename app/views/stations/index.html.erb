@@ -3,13 +3,15 @@
 <ul class="stations">
   <% @stations.each do |station| %>
     <li>
-        <div>
+        <div class="station">
+          <div class="name">
             <%= link_to station.name, station_path( station ), class: 'station'  %>
-        </div>
-        <div>
-            <span class="play"><%= number_to_human(station.play_count) %></span>
-            <span class="artist"><%= number_to_human(station.artist_count) %></span>
-            <span class="song"><%= number_to_human(station.song_count) %></span>
+          </div>
+          <div class="info">
+              <span class="play"><%= number_to_human(station.play_count) %></span> songs played
+              <span class="artist"><%= number_to_human(station.artist_count) %></span> artists
+              <span class="song"><%= number_to_human(station.song_count) %></span> songs
+          </div>
         </div>
     </li>
   <% end %>

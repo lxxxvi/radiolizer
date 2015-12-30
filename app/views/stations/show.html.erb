@@ -1,7 +1,7 @@
 <h2><%= @station.name %></h2>
 
 <h3>10 most played songs on <%= @station.name%></h3>
-<%= render partial: 'songs/list', locals: { songs: @station.top_songs( 10 ), display: [ :play_count ] } %>
+<%= render partial: 'songs/list', locals: { songs: @station.top_songs( 10 ), display: [ :play_count, :artist ] } %>
 
 <hr />
 

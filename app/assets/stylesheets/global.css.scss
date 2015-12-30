@@ -37,8 +37,6 @@ b {
   font-weight: 300;
 }
 
-h1, h2, h3, h4, h5 {
-}
 
 h1 {
   font-family: "Pacifico", sans-serif;
@@ -62,6 +60,12 @@ h3 {
 }
 
 
+h4 {
+  font-weight: 600;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
 ul {
     list-style: none;
 }
@@ -80,32 +84,6 @@ th, td {
   vertical-align: top;
 }
 
-
-span.play, span.artist, span.song, span.clock {
-  font-size: 12px;
-  display: inline-block;
-  margin-right: 10px;
-}
-
-span.play::before {
-  content: image-url('play.png');
-  margin-right: 4px;
-}
-
-span.artist::before {
-  content: image-url('artist.png');
-  margin-right: 4px;
-}
-
-span.song::before {
-  content: image-url('song.png');
-  margin-right: 4px;
-}
-
-span.clock::before {
-  content: image-url('clock.png');
-  margin-right: 4px;
-}
 
 .vertical-center {
     display: flex;
@@ -148,23 +126,3 @@ span.clock::before {
 }
 
 
-.broadcast_statistics {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  > div {
-    width: 25%;
-    min-width: 200px;
-    margin: 10px 0;
-  }
-
-  .stats {
-    width: 100%;
-
-    b {
-      display: block;
-      width: 100%;
-    }
-  }
-}

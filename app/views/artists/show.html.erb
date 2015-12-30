@@ -3,9 +3,40 @@
 
 <h2><%= @artist.name %></h2>
 
-<p><%= @artist.name %> was played <b><%= @artist.total_plays %></b> times so far</p>
+<h3>Stations</h3>
+<div class="facts">
+    <div>
+        <div class="fact">
+            <b>First appearance</b>
+            <div class="station">
+                <div class="name">
+                    <%= link_to @artist.first_broadcast.song.name, song_path( @artist.first_broadcast.song) %> on
+                    <%= link_to @artist.first_broadcast.station.name, station_path( @artist.first_broadcast.station ) %>
+                </div>
+                <div class="info">
+                    on <%= @artist.first_broadcast.time.strftime("%d %B %Y") %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="fact">
+            <b>Last played on station</b>
+            <div class="station">
+              <div class="name">
+                <%= link_to @artist.last_broadcast.song.name, song_path(@artist.last_broadcast.song) %> on
+                <%= link_to @artist.last_broadcast.station.name, stations_path( @artist.last_broadcast.station) %>
+              </div>
+              <div class="info">
+                  <%= distance_of_time_in_words_to_now( @artist.last_broadcast.time ) %> ago
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<%= column_chart @artist.stations.group('stations.name').count %>
+<h3>Broadcasts</h3>
+<%= render partial: 'broadcasts/stats', locals: { item: @artist } %>
 
 <% if @artist.awards.any? %>
 <h3>Won awards</h3>
@@ -13,4 +44,4 @@
 <% end %>
 
 <h3>Played songs</h3>
-<%= render partial: 'songs/list', locals: { songs: @artist.songs.order( 'songs.name ASC') , display: [ :play_count ] } %>
+<%= render partial: 'songs/list', locals: { songs: @artist.songs_ranked , display: [ :play_count ] } %>
