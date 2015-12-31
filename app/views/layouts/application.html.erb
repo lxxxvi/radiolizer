@@ -9,7 +9,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>Radiolizer</h1>
+  <div class="logo">
+    <h1>Radiolizer</h1>
+    <b>Analyzing stations since <%= Broadcast.order( time: :asc).first.time.strftime("%d %B %Y") %></b>
+  </div>
   <nav class="top">
     <ul>
       <li><%= link_to 'Home', root_path %></li>

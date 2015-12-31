@@ -40,9 +40,7 @@ b {
 
 h1 {
   font-family: "Pacifico", sans-serif;
-  margin: 40px 0;
   font-size: 800%;
-  text-align: center;
   color: $orange;
 }
 
@@ -84,6 +82,10 @@ th, td {
   vertical-align: top;
 }
 
+.logo {
+  margin: 40px 0;
+  text-align: center;
+}
 
 .vertical-center {
     display: flex;
@@ -126,3 +128,23 @@ th, td {
 }
 
 
+ul.stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  li {
+    width: 25%;
+    min-width: 200px;
+    margin: 10px 0;
+  }
+
+  .stat {
+    width: 100%;
+
+    b {
+      display: block;
+      width: 100%;
+    }
+  }
+}

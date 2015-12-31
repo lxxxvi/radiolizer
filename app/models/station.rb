@@ -20,15 +20,19 @@ class Station < ActiveRecord::Base
     broadcasts.count
   end
 
+  def first_broadcast
+    broadcasts.order( time: :asc ).first
+  end
+
   def latest_broadcast
     broadcasts.order( time: :desc ).first
   end
 
-  def song_count
+  def count_songs
     broadcasts.joins( :song ).group('songs.id').count.count
   end
 
-  def artist_count
+  def count_artists
     broadcasts.joins( song: :artist ).group('artists.id').count.count
   end
 
