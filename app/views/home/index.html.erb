@@ -1,50 +1,8 @@
-<h2>Home</h2>
+<% if flash[:notice] %>
+  <b><%= flash[:notice] %></b>
+<% end %>
 
-<div class="facts">
-  <div>
-    <div class="fact">
-      <b>Newest song</b>
-      <%= render partial: 'songs/item', locals: { song: Song.newest, display: [ :first_played, :artist ] } %>
-    </div>
-  </div>
-  <div>
-    <div class="fact">
-      <b>Artist with most songs</b>
-      <%= render partial: 'artists/item', locals: { artist: Artist.most_songs, display: [ :song_count ] } %>
-    </div>
-  </div>
-</div>
-
-<h3>Figures</h3>
-<ul class="stats">
-    <li>
-        <div>
-            <span class="big"><%= Station.count %></span> <%= 'station'.pluralize( Station.count) %>
-        </div>
-    </li>
-    <li>
-        <div>
-            <span class="big"><%= Artist.count %></span> <%= 'artist'.pluralize( Artist.count) %>
-        </div>
-    </li>
-    <li>
-        <div>
-            <span class="big"><%= Song.count %></span> <%= 'song'.pluralize( Song.count) %>
-        </div>
-    </li>
-    <li>
-        <div>
-            <span class="big"><%= Broadcast.count %></span> <%= 'play'.pluralize( Broadcast.count) %>
-        </div>
-    </li>
-</ul>
+<%= render 'home/facts' %>
 
 <h3>Lately On-Air</h3>
-<table>
-<% Station.all.each do |station| %>
-  <tr>
-      <td><%= link_to station.name, station_path( station ) %></td>
-      <td><%= render partial: 'songs/item', locals: { song: station.latest_broadcast.song, display: [ :last_played, :artist ] } %></td>
-  </tr>
-<% end %>
-</table>
+<%= render 'home/onair' %>

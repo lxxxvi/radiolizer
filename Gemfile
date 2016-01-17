@@ -11,7 +11,7 @@ gem 'sqlite3' # used for test
 # gem 'sass-rails', '~> 4.0.2'
 # gem 'sass-rails', '>= 3.2'
 
-# gem 'bootstrap-sass', '~> 3.3.6'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '>= 3.2'
 # gem 'compass-rails'
 # gem 'sprockets-rails', :require => 'sprockets/railtie'
@@ -58,3 +58,5 @@ gem 'whenever', require: false
 
 gem "chartkick"
 gem 'groupdate'
+
+gem 'quiet_assets', group: :development

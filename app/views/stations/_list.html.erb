@@ -1,0 +1,12 @@
+<% if stations %>
+  <div class="list-group">
+      <% @stations.each do |station| %>
+        <div class="list-group-item">
+          <%= link_to station.name, station_path( station ), class: 'list-group-item-heading'  %>
+          <div class="xs-info">
+              Analyzing since <%= station.first_broadcast.time.strftime("%d %B %Y") %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<div class="list-group">
+  <% Station.all.each do |station| %>
+    <div class="list-group-item">
+      <%= link_to station.name, station_path( station ), class: 'list-group-item-heading station' %>
+      <%= render partial: 'songs/item', locals: { song: station.latest_broadcast.song, display: [ :last_played, :artist ] } %>
+    </div>
+  <% end %>
+</div>

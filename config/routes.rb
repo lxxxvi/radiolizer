@@ -1,12 +1,22 @@
 Radiolizer::Application.routes.draw do
 
+  get     'login'                           => 'sessions#new'       , as: 'login'
+  get     'logout'                          => 'sessions#destroy'   , as: 'logout'
+  post    'login'                           => 'sessions#create'
+
   get 'awards/index'
 
   root 'home#index'
 
   resources "songs"
   resources "artists"
+  get 'artists/index/:character'        => 'artists#alphabet'   , as: 'alphabetic_artists'
   resources "stations"
+
+  get 'artists/:id/same_as/:parent_id'  => 'artists#same_as'    , as: 'same_as_artist'
+  get 'artists/:id/capitalize'          => 'artists#capitalize' , as: 'capitalize_artist_name'
+  get 'songs/:id/same_as/:parent_id'    => 'songs#same_as'      , as: 'same_as_song'
+  get 'songs/:id/capitalize'            => 'songs#capitalize'   , as: 'capitalize_song_name'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -37,6 +37,12 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    autoprefixer-rails (6.3.1)
+      execjs
+      json
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.2)
     chartkick (1.4.1)
     chronic (0.10.2)
@@ -74,6 +80,8 @@ GEM
     mysql2 (0.4.2)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
+    quiet_assets (1.1.0)
+      railties (>= 3.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -138,6 +146,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.3.6)
   chartkick
   coffee-rails (~> 4.0.0)
   groupdate
@@ -145,6 +154,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   nokogiri
+  quiet_assets
   rails (~> 4.2.5)
   sass-rails (>= 3.2)
   sdoc
@@ -154,4 +164,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

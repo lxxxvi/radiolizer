@@ -1,47 +1,41 @@
-<%= link_to 'Back', '#', { class: 'back', onclick: 'history.go(-1); return false;' } %>
+<%= link_to 'Back', '#', { class: 'btn btn-default btn-sm', onclick: 'history.go(-1); return false;' } %>
 <br />
 
 <h2><%= @artist.name %></h2>
 
-<h3>Stations</h3>
-<div class="facts">
-    <div>
-        <div class="fact">
-            <b>First appearance</b>
-            <div class="station">
-                <div class="name">
-                    <%= link_to @artist.first_broadcast.song.name, song_path( @artist.first_broadcast.song) %> on
-                    <%= link_to @artist.first_broadcast.station.name, station_path( @artist.first_broadcast.station ) %>
-                </div>
-                <div class="info">
-                    on <%= @artist.first_broadcast.time.strftime("%d %B %Y") %>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="fact">
-            <b>Last played on station</b>
-            <div class="station">
-              <div class="name">
-                <%= link_to @artist.last_broadcast.song.name, song_path(@artist.last_broadcast.song) %> on
-                <%= link_to @artist.last_broadcast.station.name, stations_path( @artist.last_broadcast.station) %>
-              </div>
-              <div class="info">
-                  <%= distance_of_time_in_words_to_now( @artist.last_broadcast.time ) %> ago
-              </div>
-            </div>
-        </div>
-    </div>
-</div>
+<% if logged_in? %>
+  <%= link_to 'capitalize name', capitalize_artist_name_path( @artist  ) %>
 
-<h3>Broadcasts</h3>
-<%= render partial: 'broadcasts/stats', locals: { item: @artist } %>
+  <% if @artist.parent.nil? && @artist.similar.any? %>
+    this artist could be same as
+    <ul>
+        <% @artist.similar.each do |similar_artist| %>
+          <li>
+              <%= link_to similar_artist.name, artist_path( similar_artist ) %>
+              make <%= link_to "#{similar_artist.name} parent", same_as_artist_path( id: @artist.id, parent_id: similar_artist.id) %>
+          </li>
+        <% end %>
+    </ul>
 
-<% if @artist.awards.any? %>
-<h3>Won awards</h3>
-<%= render partial: 'awards/list', locals: { awards: @artist.awards, hide_winner: true } %>
+  <% end %>
+
 <% end %>
 
-<h3>Played songs</h3>
-<%= render partial: 'songs/list', locals: { songs: @artist.songs_ranked , display: [ :play_count ] } %>
+<% if @artist.parent %>
+  see <%= link_to @artist.parent.name, artist_path( @artist.parent ) %>
+<% else %>
+  <h3>Trivia</h3>
+  <%= render partial: 'artists/trivia', locals: { artist: @artist } %>
+
+  <h3>Broadcasts</h3>
+  <%= render partial: 'broadcasts/stats', locals: { item: @artist } %>
+
+  <% if @artist.awards.any? %>
+    <h3>Won awards</h3>
+    <%= render partial: 'awards/list', locals: { awards: @artist.awards, hide_winner: true } %>
+  <% end %>
+
+  <h3>Played songs</h3>
+  <%= render partial: 'songs/list', locals: { songs: @artist.songs_ranked , display: [ :play_count ] } %>
+<% end %>
+

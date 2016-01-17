@@ -1,14 +1,14 @@
 <% if awards.any? %>
 <% display = [] unless display %>
-  <ul class="awards">
+  <div class="list-group">
     <% awards.each do |award| %>
-      <li>
-          <div class="title">
+      <div class="list-group-item">
+          <h5 class="list-group-item-heading">
             <span class="trophy <%= award.trophy.rank_to_words.downcase %>"><%= award.trophy.rank_to_words %></span> in
             <span class="trophy"><%= award.trophy.name %></span> on
             <%= link_to award.station.name, station_path( award.station ) %> for
             <span class="epoch_name"><%= award.ceremony.epoch_name %></span>
-          </div>
+          </h5>
           <% if display.include?(:winner) %>
             <% if award.awardable_type ==  'Song' %>
               <%= render partial: 'songs/item', locals: { song: award.awardable } %>
@@ -16,7 +16,7 @@
               <%= render partial: 'artists/item', locals: { artist: award.awardable } %>
             <% end %>
           <% end %>
-      </li>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% end %>

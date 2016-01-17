@@ -1,35 +1,27 @@
-<%= link_to 'Back', '#', { class: 'back', onclick: 'history.go(-1); return false;' } %><br />
+<%= link_to 'Back', '#', { class: 'btn btn-default btn-sm', onclick: 'history.go(-1); return false;' } %><br />
 <h2><%= @song.name %><span class="tiny"> by <%= link_to @song.artist.name, @song.artist, class: 'artist' %></span></h2>
 
+
+<% if logged_in? %>
+
+  <%= link_to 'capitalize song name', capitalize_song_name_path( @song) %> <br />
+
+  <% if @song.parent.nil? && @song.similar.any? %>
+    this song could be same as
+    <ul>
+        <% @song.similar.each do |similar_song| %>
+          <li>
+              <%= link_to similar_song.name, song_path( similar_song ) %>
+              make <%= link_to "#{ similar_song.name} parent", same_as_song_path( id: @song.id, parent_id: similar_song.id ) %>
+          </li>
+        <% end %>
+    </ul>
+
+  <% end %>
+<% end %>
+
 <h3>Stations</h3>
-<div class="facts">
-    <div>
-      <div class="fact">
-          <b>First appearance</b>
-          <div class="station">
-              <div class="name">
-                  <%= link_to @song.first_broadcast.station.name, station_path( @song.first_broadcast.station ) %>
-              </div>
-              <div class="info">
-                  on <%= @song.first_broadcast.time.strftime("%d %B %Y") %>
-              </div>
-          </div>
-      </div>
-    </div>
-    <div>
-      <div class="fact">
-          <b>Last played on station</b>
-          <div class="station">
-              <div class="name">
-                  <%= link_to @song.last_broadcast.station.name, stations_path( @song.last_broadcast.station) %>
-              </div>
-              <div class="info">
-                  <%= distance_of_time_in_words_to_now( @song.last_broadcast.time ) %> ago
-              </div>
-          </div>
-      </div>
-    </div>
-</div>
+<%= render partial: 'songs/trivia', locals: { song: @song } %>
 
 <h3>Broadcasts</h3>
 <%= render partial: 'broadcasts/stats', locals: { item: @song } %>

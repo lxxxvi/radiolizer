@@ -1,43 +1,50 @@
 <% if artist %>
 <% display = [] unless display %>
+  <div class="artist">
 
-<div class="artist">
+    <div class="row">
+        <div class="col-xs-12">
 
-    <div class="name">
-      <%= link_to artist.name, artist_path(artist), class: 'artist' %>
+            <div class="row">
+                <div class="col-xs-12">
+                    <%= link_to artist.name, artist_path(artist), class: 'artist' %>
+                </div>
+            </div>
+
+            <div class="row xs-info">
+                <div class="col-xs-12">
+                    <% if display.include?(:play_count) && artist.play_count %>
+                      <%= artist.play_count %> <%= 'play'.pluralize( artist.play_count) %>
+                    <% end %>
+
+                    <% if display.include?(:first_played) %>
+                      First played
+                      <% if @station %>
+                        <%= artist.first_broadcast_on( @station ).time  %>
+                      <% else %>
+                        <%= artist.first_broadcast.time  %> on <%= artist.first_broadcast.station.name %>
+                      <% end %>
+                      </span>
+                    <% end %>
+
+                    <% if display.include?(:last_played) %>
+            <span class="clock">Last played
+                <% if @station %>
+              <%= distance_of_time_in_words_to_now( artist.last_broadcast_on( @station ).time ) %> ago
+            <% else %>
+              <%= distance_of_time_in_words_to_now( artist.last_broadcast.time ) %> ago on <%= artist.last_broadcast.station.name %>
+            <% end %>
+            </span>
+                    <% end %>
+
+                    <% if display.include?(:song_count) %>
+                      <%= artist.songs.count %> <%= 'song'.pluralize( artist.songs.count ) %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="info">
 
-        <% if display.include?(:play_count) && artist.play_count %>
-          <%= artist.play_count %> <%= 'play'.pluralize( artist.play_count) %>
-        <% end %>
-
-        <% if display.include?(:first_played) %>
-          First played
-              <% if @station %>
-            <%= artist.first_broadcast_on( @station ).time  %>
-          <% else %>
-            <%= artist.first_broadcast.time  %> on <%= artist.first_broadcast.station.name %>
-          <% end %>
-          </span>
-        <% end %>
-
-        <% if display.include?(:last_played) %>
-          <span class="clock">Last played
-          <% if @station %>
-            <%= distance_of_time_in_words_to_now( artist.last_broadcast_on( @station ).time ) %> ago
-          <% else %>
-            <%= distance_of_time_in_words_to_now( artist.last_broadcast.time ) %> ago on <%= artist.last_broadcast.station.name %>
-          <% end %>
-          </span>
-        <% end %>
-
-        <% if display.include?(:song_count) %>
-          <%= artist.songs.count %> <%= 'song'.pluralize( artist.songs.count ) %>
-        <% end %>
-    </div>
-
-
-</div>
+  </div>
 <% end %>

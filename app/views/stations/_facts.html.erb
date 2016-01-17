@@ -1,0 +1,9 @@
+<div class="panel panel-default facts">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-xs-4"><%= @station.count_artists %> <%= 'artist'.pluralize( @station.count_artists ) %></div>
+        <div class="col-xs-4"><%= @station.count_songs %> <%= 'song'.pluralize( @station.count_songs ) %></div>
+        <div class="col-xs-4"><%= @station.broadcasts.count %> <%= 'play'.pluralize( @station.broadcasts.count ) %></div>
+      </div>
+  </div>
+</div>

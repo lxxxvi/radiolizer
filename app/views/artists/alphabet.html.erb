@@ -1,0 +1,12 @@
+<h2>Browse all artists</h2>
+
+<div>
+  <% (('A'..'Z').to_a + %w( 0-9 !?# )).each do |group| %>
+    <%= link_to group, alphabetic_artists_path( character: group) %>
+  <% end %>
+</div>
+<ul>
+    <% @artists.each do |artist| %>
+      <li><%= link_to artist.name, artist_path( artist ) %></li>
+    <% end %>
+</ul>

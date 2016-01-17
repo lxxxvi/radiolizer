@@ -1,40 +1,16 @@
 <h2><%= @station.name %></h2>
-<b>Analyzing since</b> <%= @station.first_broadcast.time.strftime('%d %B %Y') %>
 
-<h3>Figures</h3>
-<ul class="stats">
-    <li>
-      <div>
-        <span class="big"><%= @station.count_artists %></span> <%= 'artist'.pluralize( @station.count_artists ) %>
-      </div>
-    </li>
-    <li>
-      <div>
-        <span class="big"><%= @station.count_songs %></span> <%= 'song'.pluralize( @station.count_songs ) %>
-      </div>
-    </li>
-    <li>
-      <div>
-        <span class="big"><%= @station.broadcasts.count %></span> <%= 'play'.pluralize( @station.broadcasts.count ) %>
-      </div>
-    </li>
-</ul>
 
-<h3>Most played on <%= @station.name%></h3>
-<div class="facts">
-    <div>
-        <div class="fact">
-            <b>Songs</b>
-            <%= render partial: 'songs/list', locals: { songs: @station.top_songs( 10 ), display: [ :play_count, :artist ] } %>
-        </div>
-    </div>
-    <div>
-        <div class="fact">
-            <b>Artists</b>
-            <%= render partial: 'artists/list', locals: { artists: @station.top_artists( 10 ), display: [ :play_count ] } %>
-        </div>
-    </div>
+<%= render 'stations/facts' %>
+
+<h3>Most played</h3>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+      <h4>Songs</h4>
+      <%= render partial: 'songs/list', locals: { songs: @station.top_songs( 10 ), display: [ :play_count, :artist ] } %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+      <h4>Artists</h4>
+      <%= render partial: 'artists/list', locals: { artists: @station.top_artists( 10 ), display: [ :play_count ] } %>
+  </div>
 </div>
-
-
-

@@ -9,23 +9,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="logo">
-    <h1>Radiolizer</h1>
-    <b>Analyzing stations since <%= Broadcast.order( time: :asc).first.time.strftime("%d %B %Y") %></b>
+<div class="container">
+<% if logged_in? %>
+  <%= link_to 'Logout', logout_path, { style: 'position: fixed; top: 0; left: 0; '} %>
+<% end %>
+  <div class="row">
+    <div class="col-xs-12 title">
+      <h1>Radiolizer</h1>
+      <b>Analyzing stations since <%= Broadcast.order( time: :asc).first.time.strftime("%d %B %Y") %></b>
+    </div>
   </div>
-  <nav class="top">
-    <ul>
-      <li><%= link_to 'Home', root_path %></li>
-      <li><%= link_to 'Stations', stations_path %></li>
-    </ul>
-  </nav>
+
+  <%= render 'layouts/nav' %>
 
   <div class="container">
       <%= yield %>
   </div>
 
   <div class="footer">
-      2015
+      <%= render 'layouts/footer' %>
   </div>
+</div>
 </body>
 </html>

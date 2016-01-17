@@ -1,0 +1,20 @@
+<% if artist %>
+  <div class="list-group">
+      <div class="list-group-item">
+          <h4 class="list-group-item-heading">First appearance</h4>
+          <%= link_to artist.first_broadcast.song.name, song_path( artist.first_broadcast.song ) %> on
+          <%= link_to artist.first_broadcast.station.name, station_path( artist.first_broadcast.station ) %>
+          <div class="xs-info">
+              on <%= artist.first_broadcast.time.strftime("%d %B %Y") %>
+          </div>
+      </div>
+      <div class="list-group-item">
+          <h4 class="list-group-item-heading">Last played on station</h4>
+          <%= link_to artist.last_broadcast.song.name, song_path(artist.last_broadcast.song ) %> on
+          <%= link_to artist.last_broadcast.station.name, stations_path( artist.last_broadcast.station) %>
+          <div class="xs-info">
+              <%= distance_of_time_in_words_to_now( artist.last_broadcast.time ) %> ago
+          </div>
+      </div>
+  </div>
+<% end %>

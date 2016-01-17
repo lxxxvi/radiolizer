@@ -1,11 +1,10 @@
 <% if artists.any? %>
-
-  <ul class="artists">
+  <div class="list-group">
       <% artists.each do |artist| %>
-        <li>
+        <div class="list-group-item">
           <%= render partial: 'artists/item', locals: { artist: artist, display: display } %>
-        </li>
+        </div>
       <% end %>
-  </ul>
+  </div>
 
 <% end %>

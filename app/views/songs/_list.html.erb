@@ -1,9 +1,9 @@
 <% if songs.any? %>
-  <ul class="songs">
+  <div class="list-group">
       <% songs.each do |song| %>
-        <li>
+        <div class="list-group-item">
           <%= render partial: 'songs/item', locals: { song: song, display: display } %>
-        </li>
+        </div>
       <% end %>
-  </ul>
+  </div>
 <% end %>

@@ -1,18 +1,3 @@
 <h2>Stations</h2>
-
-<ul class="stations">
-  <% @stations.each do |station| %>
-    <li>
-        <div class="station">
-          <div class="name">
-            <%= link_to station.name, station_path( station ), class: 'station'  %>
-          </div>
-          <div class="info">
-            Analyzing since <%= station.first_broadcast.time.strftime("%d %B %Y") %>
-          </div>
-        </div>
-    </li>
-  <% end %>
-</ul>
-
+<%= render partial: 'stations/list', locals: { stations: @stations } %>
 

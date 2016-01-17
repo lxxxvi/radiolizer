@@ -5,14 +5,28 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find( params[:id] )
-
-=begin
-    @songs = Song.select('songs.name AS song_name, songs.id AS song_id, max(broadcasts.time) AS last_played, count(*) as play_count').
-                  joins(:broadcasts, :artist).
-                  where('artists.id = ?', params[:id] ).
-                  group('songs.name, songs.id').
-                  order('play_count DESC')
-=end
   end
 
+  def alphabet
+    case params[ :character ]
+      when '0-9' then @artists = Artist.only_parents.where( "name REGEXP '^[[:digit:]].*'" ).ordered
+      when '!?#' then @artists = Artist.only_parents.where( "name REGEXP '^[[:punct:]].*'" ).ordered
+      else            @artists = Artist.only_parents.where( 'name LIKE ?', "#{params[ :character ]}%" ).ordered
+    end
+  end
+
+  def same_as
+    parent = Artist.find( params[:parent_id] )
+    child = Artist.find( params[:id] )
+    child.same_as!( parent )
+    redirect_to action: 'show', id: parent.id
+  end
+
+  def capitalize
+    artist = Artist.find( params[:id] )
+    artist.update!( name: artist.name.capitalize_all )
+    redirect_to action: 'show', id: artist.id
+  end
+
+  private
 end

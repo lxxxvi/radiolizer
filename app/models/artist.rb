@@ -3,6 +3,8 @@ class Artist < ActiveRecord::Base
   has_many :children, class_name: 'Artist', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Artist'
   has_many :awards, as: :awardable
+  scope :only_parents, -> { where( 'parent_id IS NULL' ) }
+  scope :ordered, -> { order( :name ) }
 
   validates :name, presence: true
   validates :name, uniqueness: true
@@ -11,20 +13,29 @@ class Artist < ActiveRecord::Base
 
   def same_as!( artist )
     self.update!( parent_id: artist.id )
-    Song.where( artist_id: self.id ).update_all( artist_id: artist.id ) # point all songs that belonged to "self" to new parent artist
+    songs.update_all( artist_id: artist.id ) # point all songs that belonged to "self" to new parent artist
+    awards.update_all( awardable_id: artist.id )
+  end
+
+  def similar
+    new_name = "#{ self.name.split(' ').last } #{ self.name.split(' ')[0..-2].join(' ') }".strip
+    [
+      Artist.where( '( name LIKE ? OR name LIKE ? ) AND id != ? AND parent_id IS NULL', self.name.gsub(/ /, '%'), new_name, self.id )
+    ].flatten.compact
+  end
+
+  def self.find_parent_by( attributes )
+    found = Artist.find_by( attributes )
+    ( found.parent ) ? found.parent : found if found
   end
 
   def self.find_parent_or_create( attributes )
     found = Artist.find_or_create_by( attributes )
-    if found.parent
-      return Artist.find_parent_or_create( found.parent_id )
-    else
-      found
-    end
+    ( found.parent ) ? found.parent : found
   end
 
   def songs_ranked
-    songs.each { |s| s.count_plays ; s }.sort_by{ |s| s.play_count }.reverse
+    songs.only_parents.each { |s| s.count_plays ; s }.sort_by{ |s| s.play_count }.reverse
   end
 
   def count_plays( time_limit = DateTime.new )
@@ -36,7 +47,7 @@ class Artist < ActiveRecord::Base
   end
 
   def self.newest
-    Artist.order( created_at: :desc ).first
+    Artist.only_parents.order( created_at: :desc ).first
   end
 
   def oldest_song

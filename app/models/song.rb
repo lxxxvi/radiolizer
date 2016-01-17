@@ -5,6 +5,7 @@ class Song < ActiveRecord::Base
   has_many :children, class_name: 'Song', foreign_key: 'parent_id'
   belongs_to :parent, class_name: 'Song'
   has_many :awards, as: :awardable
+  scope :only_parents, -> { where( 'parent_id IS NULL' ) }
 
   before_create :set_initial_artist_id
 
@@ -12,9 +13,16 @@ class Song < ActiveRecord::Base
 
   attr_accessor :play_count
 
+  def similar
+    [
+      artist.songs.where( ' ( songs.name LIKE ? ) AND songs.id != ? AND songs.parent_id IS NULL', self.name, self.id )
+    ].flatten.compact
+  end
+
   def same_as!( song )
     self.update!( parent_id: song.id )
-    Broadcast.where( song_id: self.id ).update_all( song_id: song.id )
+    broadcasts.update_all( song_id: song.id )
+    awards.update_all( awardable_id: song.id )
   end
 
   def self.on( station )
@@ -37,13 +45,14 @@ class Song < ActiveRecord::Base
     Broadcast.most_played_song
   end
 
+  def self.find_parent_by( attributes )
+    found = Song.find_or_create_by( attributes )
+    ( found.parent ) ? found.parent : found
+  end
+
   def self.find_parent_or_create( attributes )
     found = Song.find_or_create_by( attributes )
-    if found.parent
-      Song.find_parent_or_create( attributes )
-    else
-      found
-    end
+    ( found.parent ) ? found.parent : found
   end
 
   def count_plays( time_limit = DateTime.new )
@@ -73,7 +82,6 @@ class Song < ActiveRecord::Base
   def last_broadcast_on( station )
     on( station ).order( 'broadcasts.time DESC' ).first
   end
-
 
   private
   def set_initial_artist_id
