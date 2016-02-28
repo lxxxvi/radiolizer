@@ -1,3 +1,4 @@
+
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
@@ -48,3 +49,13 @@ namespace :deploy do
 end
 
 after 'deploy:publishing', 'deploy:restart'
+
+set :ssh_options, {
+  user: "mario",
+  forward_agent: true,
+}
+
+# whenever
+require "whenever/capistrano"
+set :whenever_identifier, -> { "#{fetch(:application)}_#{fetch(:stage)}" }
+
