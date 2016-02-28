@@ -59,4 +59,7 @@ gem 'whenever', require: false
 gem "chartkick"
 gem 'groupdate'
 
-gem 'quiet_assets', group: :development
+group :development do
+    gem 'quiet_assets'
+    gem 'capistrano'
+end
