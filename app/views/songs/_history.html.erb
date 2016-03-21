@@ -1,0 +1,28 @@
+<h4>Broadcasts timeline</h4>
+<div class="well">
+  <%= line_chart song.broadcasts.group_by_day(:time).count %>
+</div>
+
+<h4>Aired during day</h4>
+<div class="well">
+  <%= column_chart song.broadcasts.group_by_hour_of_day(:time, format: '%l %P').count %>
+</div>
+
+<h4>All broadcasts</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date / Time</th>
+      <th>Station</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% song.broadcasts.each do |broadcast| %>
+      <tr>
+        <td><%= broadcast.time %></td>
+        <td><%= broadcast.station.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
