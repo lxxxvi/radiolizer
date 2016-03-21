@@ -31,5 +31,5 @@
 <%= render partial: 'awards/list', locals: { awards: @song.awards, hide_winner: true } %>
 <% end %>
 
-<% # TODO broadcast history %>
-
+<h3>Broadcast history</h3>
+<%= render 'songs/history', song: @song %>
